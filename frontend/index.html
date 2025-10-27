@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projectile Motion Simulator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-title">Projectile Motion Simulator</div>
+      <div class="header-right"> 
+        <button id="how-it-works-btn">How it works</button>
+      </div>
+    </header>
+
+    <div class="input-section">
+      <label>Initial Velocity (m/s):
+        <input type="number" id="velocity" value="50">
+        <span class="warning" id="velocity-warning"></span>
+      </label>
+      <label>Launch Angle (degrees):
+        <input type="number" id="angle" value="45">
+        <span class="warning" id="angle-warning"></span>
+      </label>
+      <label>Drag Coefficient:
+        <input type="number" id="drag" value="0.05" step="0.01">
+        <span class="warning" id="drag-warning"></span>
+      </label>
+      <label>Time Step (dt):
+        <input type="number" id="dt" value="0.01" step="0.001">
+        <span class="warning" id="dt-warning"></span>
+      </label>
+      <label>Wind Speed (m/s):
+        <input type="number" id="wind" value="0" step="0.1">
+        <span class="warning" id="wind-warning"></span>
+      </label>
+      <div style="display: flex; gap: 10px; margin-top: 10px; justify-content: center;">
+        <button id="simulate-btn">Simulate</button>
+        <button id="reset-btn" type="button">Reset</button>
+      </div>
+    </div>
+
+    <div id="plot"></div>
+    
+    <div id="wind-display" style="text-align: center; margin: 10px 0;"></div>
+
+    <div class="plot-controls">
+      <button id="save-plot-btn" class="export-btn" style="display:none; margin-top:10px;">Save Plot as PNG</button>
+      <button id="save-data-btn" class="export-btn" style="display:none; margin-top:10px;">Save Data as CSV</button>
+    </div>
+
+
+    <h2>Trajectory Data</h2>
+    <h4 align="center">Click column headers to sort them in ascending or descending order.</h4>
+    <div id="trajectory-container">
+      <table id="trajectory-table">
+        <thead>
+          <tr>
+            <th data-column="t">Time (s)</th>
+            <th data-column="x">X (m)</th>
+            <th data-column="y">Y (m)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- JS will populate -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- How it Works Section -->
+    <section id="how-it-works-section">
+      <h2>How the Formula for Projectile Motion is Calculated</h2>
+      <p>
+        Projectile motion is calculated using the basic laws of physics. The formula considers the 
+        initial velocity of the object, the angle at which it is launched, the effect of air resistance 
+        (drag), and the time progression (time step).
+      </p>
+
+      <h3>Key Entities</h3>
+      <ul>
+        <li><strong>Initial Velocity (m/s):</strong> The speed at which the object is launched. 
+            Higher velocity means the object will travel further and faster. Typical range: 0 – 200 m/s.</li>
+
+        <li><strong>Launch Angle (degrees):</strong> The angle at which the object is fired relative 
+            to the ground. A 45° angle gives the maximum horizontal distance (without drag). 
+            Range: 0° – 90°.</li>
+
+        <li><strong>Drag Coefficient:</strong> A number that represents air resistance. 
+            Lower values mean less drag (smoother flight). Higher values slow the object more. 
+            Typical range: 0 – 1.</li>
+
+        <li><strong>Time Step (dt):</strong> The small increments of time used to calculate 
+            the motion step by step. Smaller values (like 0.01) give more accuracy but require 
+            more computation. Range: 0.001 – 0.1 seconds.</li>
+      </ul>
+
+      <h3>Formulas Used</h3>
+      <p>The simulation uses numerical integration to calculate the position and velocity at each time step:</p>
+      <pre>
+        x(t + dt) = x(t) + v_x(t) * dt
+        y(t + dt) = y(t) + v_y(t) * dt
+        v_x(t + dt) = v_x(t) - k * v * v_x(t) * dt
+        v_y(t + dt) = v_y(t) - g * dt - k * v * v_y(t) * dt
+      </pre>
+      <p>Where:</p>
+      <ul>
+        <li><strong>x, y:</strong> Positions along horizontal and vertical axes.</li>
+        <li><strong>v_x, v_y:</strong> Velocity components along horizontal and vertical axes.</li>
+        <li><strong>v:</strong> Total velocity = sqrt(v_x² + v_y²)</li>
+        <li><strong>g:</strong> Acceleration due to gravity (9.81 m/s²)</li>
+        <li><strong>k:</strong> Drag coefficient (0 – 1)</li>
+        <li><strong>dt:</strong> Time step (0.001 – 0.1 s)</li>
+      </ul>
+      <p>
+        By combining these values with Newton’s laws of motion, the program simulates the 
+        trajectory and plots the path of the projectile over time.
+      </p>
+    </section>
+  </div>
+
+  <!-- Footer with frosted glass effect -->
+  <footer>
+    <div class="footer-left">
+      Made by <a href="https://x.com/iamShivanshT" target="_blank">Shivansh Tripathi</a>
+    </div>
+    <div class="footer-right">
+      <a href="https://github.com/Shiva1803/PBL" target="_blank">GitHub</a> |
+      Last updated: <span id="last-updated"></span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Set last updated date
+    document.getElementById("last-updated").textContent = new Date().toLocaleDateString();
+
+    // Smooth scroll to How it Works section
+    document.getElementById("how-it-works-btn").addEventListener("click", function() {
+      document.getElementById("how-it-works-section").scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+  </script>
+</body>
+</html>

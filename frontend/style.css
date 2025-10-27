@@ -1,0 +1,291 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+
+    background: linear-gradient(to bottom, 
+                                #0B0B0B 0%,
+                                #1C1C1C 50%,  
+                                #0B0B0B 100%); 
+    color: #DDA94B;
+}
+
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center; /* center the content horizontally */
+    align-items: center;     /* vertical centering */
+    padding: 0 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.header-title {
+    color: #DDA94B;
+    font-size: 1.7rem;
+    font-weight: bold;
+    text-align: center;
+    flex: 1; /* takes all available space so it stays centered */
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+#how-it-works-btn {
+  margin: 0;                 /* IMPORTANT: override the global button margin-top */
+  height: 40px;              /* pick a height < header height */
+  padding: 0 14px;           /* horizontal padding only */
+  display: flex;
+  align-items: center;       /* center label vertically */
+  justify-content: center;   /* center label horizontally */
+  background-color: rgba(255, 50, 50, 0.716);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+#how-it-works-btn:hover {
+  background-color: rgba(255, 22, 22, 0.85);
+}
+
+
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    padding-top: 100px; /* pushes content below header */
+    box-sizing: border-box; /* so padding doesn’t break width */
+}
+
+
+h1, h2 {
+  text-align: center;
+}
+
+.input-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.input-section label {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+input {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #DDA94B;
+  color: #3067b9;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #c59e44;
+}
+
+#plot {
+  margin-top: 30px;
+  width: 100%;
+  height: 400px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #DDA94B;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: rgba(221, 169, 75, 0.2);
+}
+
+.warning {
+    color: #FF6B6B; 
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+}
+
+#trajectory-container {
+    max-height: 300px; 
+    overflow-y: auto;
+    margin-top: 1rem;
+
+    /* frosted glass with slight color */
+    background: rgba(30, 65, 116, 0.25); /* 25% of your base #1E4174 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border: 1px solid rgba(221, 169, 75, 0.3); /* subtle border matching theme */
+    border-radius: 8px; /* rounded corners for polish */
+    padding: 0.5rem;
+}
+
+
+#trajectory-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    text-align: center;
+}
+
+#trajectory-table th, #trajectory-table td {
+    border: 1px solid #DDA94B;
+    padding: 0.3rem 0.5rem;
+    text-align: center;
+    color: white;
+}
+
+#trajectory-table th {
+    cursor: pointer;
+    background-color: #378aff;
+    color: white;
+}
+
+#how-it-works-section {
+  margin: 2rem auto;
+  max-width: 900px;
+  padding: 1.5rem;
+  background: rgba(30, 65, 116, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(221, 169, 75, 0.3);
+  border-radius: 10px;
+  color: white;
+  line-height: 1.6;
+}
+
+#how-it-works-section h2 {
+  color: #DDA94B;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+#how-it-works-section h3 {
+  margin-top: 1rem;
+  color: #DDA94B;
+}
+
+#how-it-works-section ul {
+  list-style-type: disc;
+  margin-left: 1.5rem;
+}
+
+.plot-controls {
+    text-align: center;
+    margin-top: 10px;
+}
+
+button.export-btn {
+    padding: 10px 20px;        /* horizontal + vertical spacing */
+    font-size: 1rem;           /* text size */
+    border-radius: 6px;        /* rounded corners */
+    cursor: pointer;
+    background-color: #DDA94B; /* golden color */
+    color: #3067b9;            /* text color */
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 40px;              /* fixed height */
+    line-height: 1.2;          /* align text vertically */
+}
+
+button.export-btn:hover {
+    background-color: #c59e44;
+}
+
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    background: rgba(255, 255, 255, 0.1); /* frosted glass */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 0.9rem;
+    color: #fff;
+    z-index: 1000;
+    box-sizing: border-box; /* ensures padding is included in width */
+    overflow: hidden; /* prevents text overflow */
+}
+
+button.export-btn {
+    padding: 10px 20px;        /* horizontal + vertical spacing */
+    font-size: 1rem;           /* text size */
+    border-radius: 6px;        /* rounded corners */
+    cursor: pointer;
+    background-color: #DDA94B; /* golden color */
+    color: #3067b9;            /* text color */
+    border: none;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+button.export-btn:hover {
+    background-color: #c59e44; /* slightly darker on hover */
+}
+
+
+.footer-left,
+.footer-right {
+    white-space: nowrap; /* keeps each section on one line */
+}
+
+.footer-right {
+    text-align: right;
+    flex-shrink: 0; /* prevents shrinking when space is tight */
+}
+footer a {
+    color: #DDA94B; /* golden color for all footer links */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
