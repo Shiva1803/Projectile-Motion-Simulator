@@ -1,5 +1,7 @@
 # Projectile Motion Simulator
 
+![Image](https://github.com/user-attachments/assets/508010d3-656a-48cf-b6c3-314c42d745ac)
+
 This is a **web-based physics simulator** that visualizes projectile motion under various conditions.  
 Built with **HTML, CSS, JavaScript (Plotly.js)** and a **Python (Flask)** backend, it helps users explore real-time trajectories, velocity vectors, and motion parameters. 
 
