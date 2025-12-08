@@ -4,9 +4,7 @@ import subprocess
 import os
 import numpy as np
 
-# -----------------------------
 # Flask setup
-# -----------------------------
 app = Flask(__name__)
 CORS(app)  # Allow all origins for now, restrict in production if needed
 
@@ -15,9 +13,7 @@ CORS(app)  # Allow all origins for now, restrict in production if needed
 def health():
     return jsonify({"status": "healthy"}), 200
 
-# -----------------------------
 # Paths
-# -----------------------------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 FORTRAN_FOLDER = os.path.abspath(os.path.join(BASE_DIR, "../fortran"))
 FORTRAN_EXE = os.path.join(FORTRAN_FOLDER, "projectile")
@@ -26,9 +22,7 @@ OUTPUT_FILE = os.path.join(FORTRAN_FOLDER, "output.txt")
 
 FRONTEND_FOLDER = os.path.abspath(os.path.join(BASE_DIR, "../frontend"))
 
-# -----------------------------
 # Serve frontend files
-# -----------------------------
 @app.route('/')
 def index():
     return send_from_directory(FRONTEND_FOLDER, "index.html")
@@ -41,9 +35,7 @@ def style():
 def script():
     return send_from_directory(FRONTEND_FOLDER, "script.js")
 
-# -----------------------------
-# /simulate endpoint
-# -----------------------------
+# simulate endpoint
 @app.route("/simulate", methods=["POST"])
 def simulate():
     try:
@@ -74,8 +66,9 @@ def simulate():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
-# -----------------------------
 # Run server
-# -----------------------------
 if __name__ == "__main__":
-    app.run(debug=True)
+    from os import environ
+    port = int(environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
+
