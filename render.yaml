@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: projectile-simulator
+    env: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: PORT
+        value: 5000

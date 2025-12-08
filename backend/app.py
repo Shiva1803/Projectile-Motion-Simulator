@@ -8,7 +8,12 @@ import numpy as np
 # Flask setup
 # -----------------------------
 app = Flask(__name__)
-CORS(app)  # optional now, not strictly needed if serving frontend via Flask
+CORS(app)  # Allow all origins for now, restrict in production if needed
+
+# Health check endpoint for Render
+@app.route('/health')
+def health():
+    return jsonify({"status": "healthy"}), 200
 
 # -----------------------------
 # Paths

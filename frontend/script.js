@@ -50,7 +50,8 @@ document.getElementById("simulate-btn").addEventListener("click", () => {
     if (isNaN(wind) || wind < -20 || wind > 20) { document.getElementById("wind-warning").textContent = "Wind must be between -20 and 20 m/s"; valid = false; }
     if (!valid) return; 
 
-    fetch("http://127.0.0.1:5000/simulate", {
+    // Use relative URL so it works in both local and production
+    fetch("/simulate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ velocity, angle, drag, dt, wind })
